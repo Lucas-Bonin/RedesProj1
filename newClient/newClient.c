@@ -42,7 +42,7 @@ void closeClient(TcpManager *self){
     close(self->s);
 }
 
-void initClient(TcpManager *self, const char * hostName, unsigned short port){
+void initClient(TcpManager *self, const char* hostName, unsigned short port){
     self->sendMessage = &sendMessage;
     self->recvMessage = &recvMessage;
     self->closeClient = &closeClient;
