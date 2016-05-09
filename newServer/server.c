@@ -128,10 +128,10 @@ int messagesCount(dbController dataBase[]){
 }
 
 Operations analiseData(package pkg){
-    if(pkg.temperature > 19.0){
+    if(pkg.temperature >= 23.0){
         printf("Servidor pedindo para ligar ventilador\n");
         return TURN_ON;
-    }else if(pkg.temperature < 13.0){
+    }else if(pkg.temperature < 23.0){
         printf("Servidor pedindo para desligar ventilador\n");
         return TURN_OFF;
     }
