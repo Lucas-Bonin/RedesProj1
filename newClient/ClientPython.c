@@ -40,9 +40,27 @@ static PyObject* PyStoreMessage(PyObject* self, PyObject* args){
         Py_RETURN_NONE;
     }
     
-    storeMessage(client, temp, hum);
+    //receber retorno do store message e mandar para retorno em python
+    Operations op = storeMessage(client, temp, hum);
     
-    Py_RETURN_NONE;
+    // beagle nao faz nenhuma operacao se retornar 0
+    int retPython = 0;
+    
+    switch (op) {
+        case TURN_ON:
+            retPython = 1;
+            break;
+            
+        case TURN_OFF:
+            retPython = 2;
+            break;
+        default:
+            break;
+    }
+    
+    printf("mandando %d para beaglebone\n",retPython);
+    
+    return Py_BuildValue("i", retPython);
 }
 
 static PyObject* PyCloseMessage(PyObject* self){

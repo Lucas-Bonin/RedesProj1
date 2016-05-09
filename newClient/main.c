@@ -44,7 +44,7 @@ int main(int argc, const char * argv[]) {
         getchar();
         switch (answ){
             case 1:
-                ret = storeMessage(client,0.123,0.456);
+                ret = storeMessage(client,9,0.456);
                 
                 switch(ret){
                     case TURN_ON:

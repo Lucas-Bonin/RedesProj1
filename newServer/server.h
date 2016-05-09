@@ -34,11 +34,11 @@ enum Signals{
 
 
 //sinais para controle do sensor
-enum Operations{
+typedef enum Operations{
     NONE = 0,
     TURN_ON,
     TURN_OFF,
-};
+}Operations;
 
 
 //estrutura para mandar arquivos

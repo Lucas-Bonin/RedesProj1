@@ -127,6 +127,16 @@ int messagesCount(dbController dataBase[]){
     return count;
 }
 
+Operations analiseData(package pkg){
+    if(pkg.temperature > 19.0){
+        printf("Servidor pedindo para ligar ventilador\n");
+        return TURN_ON;
+    }else if(pkg.temperature < 13.0){
+        printf("Servidor pedindo para desligar ventilador\n");
+        return TURN_OFF;
+    }
+    return NONE;
+}
 
 void storeMessage(TcpManager server, package pkg, dbController dataBase[]){
     int index = verifyFreeSpace(dataBase);
@@ -145,7 +155,8 @@ void storeMessage(TcpManager server, package pkg, dbController dataBase[]){
     
     //chamar funcao que analiza dados e retorna o comando que será executado da beagle
     
-    answ.operation = NONE;
+    answ.operation = analiseData(pkg);
+    
     server.sendMessage(&server,answ);
     
 }
@@ -189,5 +200,3 @@ typedef struct {
     dbController* dataBase;
     
 }threadParam;
-
-
